@@ -9,7 +9,7 @@ from .manager import ModelManager
 app = FastAPI(title="Multi-Model Serving Demo")
 
 # Initialize components
-model_store = ModelStore("config/models.json")
+model_store = ModelStore("llm_serving/multi_model/config/models.json")
 model_manager = ModelManager(model_store)
 
 class PredictionRequest(BaseModel):

@@ -1,5 +1,5 @@
-from app.store import ModelMetadata
-from app.worker import ModelWorker, TransformerWorker, TorchVisionWorker, TritonWorker
+from llm_serving.multi_model.app.store import ModelMetadata
+from llm_serving.multi_model.app.worker import ModelWorker, TransformerWorker, TorchVisionWorker, TritonWorker
 from typing import Optional
 
 class ModelEngine:

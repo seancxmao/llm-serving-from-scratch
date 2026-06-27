@@ -1,7 +1,8 @@
 import pytest
+import pytest_asyncio
 from fastapi.testclient import TestClient
-from httpx import AsyncClient
-from main import app
+from httpx import AsyncClient, ASGITransport
+from llm_serving.single_model.main import app
 import asyncio
 import json
 import threading
@@ -29,11 +30,13 @@ def client(test_app):
     """Create a test client with the test app."""
     return TestClient(test_app)
 
-@pytest.fixture
+# @pytest.fixture
+@pytest_asyncio.fixture
 async def async_client(test_app, event_loop):
     """Create an async test client with the test app."""
     print("Creating async client...")
-    async with AsyncClient(app=test_app, base_url="http://test") as ac:
+    transport = ASGITransport(app=test_app)
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
 
 def test_generate(client):

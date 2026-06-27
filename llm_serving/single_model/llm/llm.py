@@ -20,7 +20,9 @@ class LLMEngine:
         self.model_executor.setup_worker("facebook/opt-125m")
         
         # Initialize vLLM model
-        self.vllm_model = VLLM(model="facebook/opt-125m")
+        self.vllm_model = VLLM(
+            model="facebook/opt-125m",
+            gpu_memory_utilization=0.1)
         
         # Start processing loop in a separate thread
         self.thread = threading.Thread(target=self.requests_processing_loop, daemon=True)

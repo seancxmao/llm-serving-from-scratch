@@ -5,7 +5,8 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from torchvision.models import mobilenet_v2, MobileNet_V2_Weights
 from PIL import Image
 import torchvision.transforms as transforms
-import tritonclient.http as httpclient
+# move to init method
+# import tritonclient.http as httpclient
 import numpy as np
 import requests
 import os
@@ -74,6 +75,7 @@ class TorchVisionWorker(ModelWorker):
 
 class TritonWorker(ModelWorker):
     def __init__(self, model_metadata):
+        import tritonclient.http as httpclient
         self.triton_url = "0.0.0.0:8009"  # Default Triton server URL
         self.client = httpclient.InferenceServerClient(url=self.triton_url)
         super().__init__(model_metadata)

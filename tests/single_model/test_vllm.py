@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from main import app
+from llm_serving.single_model.main import app
 import httpx
 
 client = TestClient(app)

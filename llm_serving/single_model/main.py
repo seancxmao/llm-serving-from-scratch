@@ -1,7 +1,7 @@
 from fastapi import FastAPI, BackgroundTasks, Depends
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from llm import LLMEngine
+from .llm import LLMEngine
 from typing import List
 import asyncio
 import multiprocessing
